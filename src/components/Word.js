@@ -34,7 +34,7 @@ const Word = ({ data }) => {
         <h1 className="text-base mt-2 italic font-semibold">{wordform}</h1>
         <button class="font-semibold inline-flex items-center gap-x-1 mt-2 mb-2"
 			onClick={playAudio}>   
-			<Volume />
+			{audioSource && (<Volume />)}
 			<span>{wayToPronounce}</span>
 			<audio id="play" preload="none">
 				<source src={audioSource} type="audio/mpeg"></source>
