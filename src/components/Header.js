@@ -44,6 +44,7 @@ const Header = () => {
                             placeholder="Search for..."
                             onKeyDown={handleInputKeyDown}
                             onChange={handleInputChange}
+                            class="placeholder:italic placeholder:text-slate-400 py-2 pl-4 pr-3 shadow-sm focus:outline-none"
                         />
                         <button className="bg-green-700 border-l px-4 py-2 text-white" onClick={handleSubmit}>
                             Enter

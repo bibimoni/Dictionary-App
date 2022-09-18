@@ -3,6 +3,9 @@ import axios from "axios";
 import { InputContext } from "../App.js"
 import MeaningList from "./MeaningList.js"
 import Word from "./Word.js";
+import Synonym from "./Synonym.js";
+import Line from './Line';
+import Antonym from './Antonym.js'
 
 axios.defaults.baseURL = `https://api.dictionaryapi.dev/api/v2/entries/en`;
 
@@ -34,7 +37,15 @@ const ResultList = () => {
 	}, [inputValue])
 	
 	if(loading) {
-		return <h1 className="text-center mt-10 font-semibold text-zinc-400">Loading...</h1>
+		return (
+			<div class="animate-pulse p-4 container mx-auto max-w-2xl flex-col flex space-y-3">	
+				<div className="h-6 bg-gray-300 mt-5 rounded-md"></div>
+				<div className="h-40 bg-gray-300 mt-5 rounded-md"></div>
+				<div className="h-8 bg-gray-300 mt-5 rounded-md"></div>
+				<div className="h-40 bg-gray-300 mt-5 rounded-md"></div>
+			</div>	
+		);
+		
 	}
 	
 	if(error) {
@@ -48,14 +59,16 @@ const ResultList = () => {
 			{response && (
 			<div>
 					<Word data={response}/>
-				<hr />
-				<h3 className="text-2xl text-gray-600 italic font-semibold mt-4">
+				<Line />
+				<h3 className="text-2xl text-gray-600 italic font-semibold mt-1">
 					Meaning & Definitions:
 				</h3>
 					<MeaningList mean={response}/>
-				<h3 className="text-2xl text-gray-600 italic font-semibold mt-4">Example:</h3>
-				<h3 className="text-2xl text-gray-600 italic font-semibold mt-4">Synonym:</h3>
+				<h3 className="text-2xl text-gray-600 italic font-semibold mb-4">Synonym:</h3>
+					<Synonym mean={response}/>
+				<Line />
 				<h3 className="text-2xl text-gray-600 italic font-semibold mt-4">Antonym:</h3>
+					<Antonym mean={response}/>
 			</div>
 			)}
 		</div>
